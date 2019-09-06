@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method='post'>{% csrf_token %}
+
+
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder= "Enter Username" name="uname" required><br>
+    <label for="email"><b> email </b></label>
+    <input type="email" placeholder="Enter Password" name="email" required><br>
+
+
+    <button type="submit">update</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Welcome admin {{user.username }}</h1>
+
+<table style="width:100%" border="1">
+    <tr>
+        <th>id</th>
+        <th>username</th>
+        <th>age</th>
+        <th>email</th>
+        <th>active</th>
+        <th>staff</th>
+    </tr>
+    {% for i in key %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.username}}</td>
+        <td>{{i.age}}</td>
+        <td>{{i.email}}</td>
+
+
+
+        <td>
+            {% if i.is_active == True %}
+            active
+            {% else %}
+            deactive
+            {% endif %}
+        </td>
+        <td>
+            {% if i.is_staff == True %}
+            staff
+            {% else %}
+            unstaff
+            {% endif %}
+        </td>
+        <td>
+            <form method='post'>{% csrf_token %}
+                <button type="submit">
+        {% if i.is_active == True %}
+                    deactive
+                    {% else %}
+                     active
+                    {% endif %}
+                </button>
+        <input name="active" value ="{{i.id}}"hidden>
+            </form>
+        </td>
+        <td>
+        <form method='post'>{% csrf_token %}
+            <button type="submit">
+            {% if i.is_staff == True %}
+                    unstaff
+                    {% else %}
+                     staff
+                    {% endif %}
+
+                </button>
+
+                <input name="staff" value="{{i.id}}" hidden>
+            </form>
+        </td>
+
+        <td>
+            <form method="POST">{% csrf_token %}
+                <button type="submit" name="delete">delete</button>
+                <input name="delete" value="{{i.id}}" hidden>
+            </form>
+        </td>
+
+<!--        <td>-->
+<!--            <form method='post'>{% csrf_token %}-->
+<!--                <button type="submit"> staff </button>-->
+<!--                <input name="staff" value="{{i.id}}" hidden>-->
+<!--            </form>-->
+
+
+        </td>
+        <td>
+            <a href="/form/edit/{{i.id}}/">
+                <button type="edit"> edit </button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<form method="post">{% csrf_token %}
+    <button type="submit">Logout</button>
+    <input name="logout" hidden>
+</form>
+</body>
+</html>
